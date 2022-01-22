@@ -81,9 +81,9 @@ for i in range(count, max_len):
             print("dcsdsc")
         l.append(tmp["routes"][0]["legs"][0]["distance"]["value"])
      count+=1
-     tmp=cord + l     
+     tmp=cord + l + addr     
      print(cord)  
      s=len(l)*(",?")
-     cur.execute("INSERT INTO info VALUES (?,?"+s+')',tmp)
+     cur.execute("INSERT INTO info VALUES (?,?"+s+',?)',tmp)
      con.commit()
     
