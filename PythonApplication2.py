@@ -26,10 +26,10 @@ print("###################################################")
 con = sqlite3.connect('db.db')
 
 cur = con.cursor()
-s='CREATE TABLE if not exists info(lat DOUBLE not null, lon DOUBLE not null'
+s='CREATE TABLE if not exists final(lat DOUBLE not null, lon DOUBLE not null'
 for i in arr:
     s+=',"'+str(i[0])+' '+str(i[1])+'" DOUBLE not null'
-s+=')'
+s+=',?)'
 cur.execute(s)
 
 
@@ -76,14 +76,12 @@ for i in range(count, max_len):
         B=i
         url1 = "https://maps.googleapis.com/maps/api/directions/json?origin="+str(A[0])+"%2C"+str(A[1])+"&destination="+str(B[0])+"%2C"+str(B[1])+"&mode=walking&key="+key
         response = requests.request("GET", url1 , headers=headers, data=payload)
-        tmp=json.loads(response.text)
-        if ((tmp["routes"][0]["legs"][0]["distance"]["value"])==0):
-            print("dcsdsc")
+        tmp=json.loads(response.text)        
         l.append(tmp["routes"][0]["legs"][0]["distance"]["value"])
      count+=1
      tmp=cord + l + addr     
      print(cord)  
      s=len(l)*(",?")
-     cur.execute("INSERT INTO info VALUES (?,?"+s+',?)',tmp)
+     cur.execute("INSERT INTO final VALUES (?,?"+s+',?)',tmp)
      con.commit()
     
