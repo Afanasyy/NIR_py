@@ -16,8 +16,8 @@ def re(url, retry=2):
     else:
         return r  # ok
 
-key_G="AIzaSyDrcM0eeiZE9cE-seAFvdsnc8iDBP8FvYk"
-key_Y="7626e5f6-f640-43ef-b927-469881d57da7"
+key_G=""
+key_Y=""
 url3 = "https://api.openstreetmap.org/api/0.6/"
 payload={}
 headers = {}
